@@ -10,6 +10,8 @@ function main() {
 /** IMPORTANT **/
 var isOnline = false; //online=ALL ponies; PhoneGap=Mane6
 
+var debug = true;
+
 //global vars
 var ponies = new Array();
 var DIR_LEFT = 180;
@@ -157,6 +159,9 @@ Pony.prototype.init = function() {
         dataType: 'text',
         cache: false
     }).done(function(csvAsString) {
+        if (debug){
+            console.log(csvAsString);
+        }
         csvAsArray = csvAsString.csvToArray();
         //Loop though array
         behaviourCount = 0;
