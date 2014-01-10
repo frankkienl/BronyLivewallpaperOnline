@@ -163,6 +163,9 @@ Pony.prototype.init = function() {
             console.log(csvAsString);
         }
         csvAsArray = csvAsString.csvToArray();
+        if (debug){
+            console.log(csvAsArray);
+        }
         //Loop though array
         behaviourCount = 0;
         for (var i = 0; i < csvAsArray.length; i++) {
@@ -172,6 +175,9 @@ Pony.prototype.init = function() {
                 thisPony.behaviours[behaviourCount] = tempBehaviour;
                 behaviourCount++;
             }
+        }
+        if (debug){
+            console.log("behaviourCount: " + behaviourCount);
         }
         //
         console.log("Loaded " + thisPony.name);
