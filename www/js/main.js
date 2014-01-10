@@ -164,7 +164,7 @@ Pony.prototype.init = function() {
         }
         csvAsArray = csvAsString.csvToArray();
         if (debug){
-            console.log(csvAsArray);
+            console.log("csvArray:" + csvAsArray);
         }
         //Loop though array
         behaviourCount = 0;
