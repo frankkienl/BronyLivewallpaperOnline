@@ -8,7 +8,7 @@ function main() {
 }
 
 /** IMPORTANT **/
-var isOnline = true; //online=ALL ponies; PhoneGap=Mane6
+var isOnline = false; //online=ALL ponies; PhoneGap=Mane6
 
 //global vars
 var ponies = new Array();
