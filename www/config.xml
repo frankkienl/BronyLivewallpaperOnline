@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="nl.frankkie.bronylivewallpaperhtml5" version="1.0.0">
+    <name>Brony LiveWallpaper HTML5</name>
+    <description>Brony LiveWallpaper HTML5 port.</description>
+    <author email="ik@frankkie.nl" href="http://www.frankkie.nl">FrankkieNL</author>
+    <access origin="*"/>
+    <preference name="fullscreen" value="true"/>
+    <preference name="webviewbounce" value="false"/>
+</widget>

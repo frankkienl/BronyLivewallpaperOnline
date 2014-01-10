@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Main</title>
+        <meta charset="UTF-8">
+        <!--
+        <meta name="viewport" content="width=device-width">
+        https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+        //-->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <script src="js/libs/jquery/jquery.js"></script>       
+        <script src="js/csvToArray.v2.1.js"></script>
+        <style type="text/css">
+            body {background-image: url('img/background.jpg');}
+            ponyClass {font-family: monospace;}
+        </style>
+    </head>
+    <body>        
+        <div id="root" style="width: 100%; height: 100%">
+            
+        </div>
+        <div id="div_menu">
+            
+        </div>
+        <!-- Start ! //-->
+        <script src="js/main.js"></script>
+        <script>
+            main();
+        </script>
+    </body>
+</html>
+
+<!--
+HTML does not like '(' in names.
+<input type="checkbox" id="cb-Ace" name="cb-Ace" />&nbsp; Ace<br />
+<input type="checkbox" id="cb-Allie_Way" name="cb-Allie_Way" />&nbsp; Allie Way<br />
+<input type="checkbox" id="cb-Aloe" name="cb-Aloe" />&nbsp; Aloe<br />
+<input type="checkbox" id="cb-Angel" name="cb-Angel" />&nbsp; Angel<br />
+<input type="checkbox" id="cb-Apple_Bloom" name="cb-Apple_Bloom" />&nbsp; Apple Bloom<br />
+<input type="checkbox" id="cb-Apple_Bumpkin" name="cb-Apple_Bumpkin" />&nbsp; Apple Bumpkin<br />
+<input type="checkbox" id="cb-Apple_Fritter" name="cb-Apple_Fritter" />&nbsp; Apple Fritter<br />
+<input type="checkbox" id="cb-Applejack" name="cb-Applejack" />&nbsp; Applejack<br />
+<input type="checkbox" id="cb-Applejack_(Filly)" name="cb-Applejack_(Filly)" />&nbsp; Applejack (Filly)<br />
+<input type="checkbox" id="cb-Archer" name="cb-Archer" />&nbsp; Archer<br />
+<input type="checkbox" id="cb-Beauty_Brass" name="cb-Beauty_Brass" />&nbsp; Beauty Brass<br />
+<input type="checkbox" id="cb-Berry_Punch" name="cb-Berry_Punch" />&nbsp; Berry Punch<br />
+<input type="checkbox" id="cb-Big_Mac" name="cb-Big_Mac" />&nbsp; Big Mac<br />
+<input type="checkbox" id="cb-Big_Macintosh" name="cb-Big_Macintosh" />&nbsp; Big Macintosh<br />
+<input type="checkbox" id="cb-Blinkie_Pie" name="cb-Blinkie_Pie" />&nbsp; Blinkie Pie<br />
+<input type="checkbox" id="cb-Blossomforth" name="cb-Blossomforth" />&nbsp; Blossomforth<br />
+<input type="checkbox" id="cb-Blues" name="cb-Blues" />&nbsp; Blues<br />
+<input type="checkbox" id="cb-Bon-Bon" name="cb-Bon-Bon" />&nbsp; Bon-Bon<br />
+<input type="checkbox" id="cb-Boxxy_Brown" name="cb-Boxxy_Brown" />&nbsp; Boxxy Brown<br />
+<input type="checkbox" id="cb-Braeburn" name="cb-Braeburn" />&nbsp; Braeburn<br />
+<input type="checkbox" id="cb-Caesar" name="cb-Caesar" />&nbsp; Caesar<br />
+<input type="checkbox" id="cb-Candy_Mane" name="cb-Candy_Mane" />&nbsp; Candy Mane<br />
+<input type="checkbox" id="cb-Caramel" name="cb-Caramel" />&nbsp; Caramel<br />
+<input type="checkbox" id="cb-Carrot_Top" name="cb-Carrot_Top" />&nbsp; Carrot Top<br />
+<input type="checkbox" id="cb-Changeling" name="cb-Changeling" />&nbsp; Changeling<br />
+<input type="checkbox" id="cb-Cheerilee" name="cb-Cheerilee" />&nbsp; Cheerilee<br />
+<input type="checkbox" id="cb-Cheerilee_(80s)" name="cb-Cheerilee_(80s)" />&nbsp; Cheerilee (80s)<br />
+<input type="checkbox" id="cb-Cherry_Berry" name="cb-Cherry_Berry" />&nbsp; Cherry Berry<br />
+<input type="checkbox" id="cb-Cloud_Kicker" name="cb-Cloud_Kicker" />&nbsp; Cloud Kicker<br />
+<input type="checkbox" id="cb-Cloudchaser" name="cb-Cloudchaser" />&nbsp; Cloudchaser<br />
+<input type="checkbox" id="cb-Clyde_Pie" name="cb-Clyde_Pie" />&nbsp; Clyde Pie<br />
+<input type="checkbox" id="cb-Colgate" name="cb-Colgate" />&nbsp; Colgate<br />
+<input type="checkbox" id="cb-Daisy" name="cb-Daisy" />&nbsp; Daisy<br />
+<input type="checkbox" id="cb-Daring_Do" name="cb-Daring_Do" />&nbsp; Daring Do<br />
+<input type="checkbox" id="cb-Davenport" name="cb-Davenport" />&nbsp; Davenport<br />
+<input type="checkbox" id="cb-Derpy_Hooves" name="cb-Derpy_Hooves" />&nbsp; Derpy Hooves<br />
+<input type="checkbox" id="cb-Diamond_Mint" name="cb-Diamond_Mint" />&nbsp; Diamond Mint<br />
+<input type="checkbox" id="cb-Diamond_Tiara" name="cb-Diamond_Tiara" />&nbsp; Diamond Tiara<br />
+<input type="checkbox" id="cb-Dinky_Hooves" name="cb-Dinky_Hooves" />&nbsp; Dinky Hooves<br />
+<input type="checkbox" id="cb-Discord" name="cb-Discord" />&nbsp; Discord<br />
+<input type="checkbox" id="cb-Doctor_Whooves" name="cb-Doctor_Whooves" />&nbsp; Doctor Whooves<br />
+<input type="checkbox" id="cb-Doctor_Whooves_(Fan_Character)" name="cb-Doctor_Whooves_(Fan_Character)" />&nbsp; Doctor Whooves (Fan Character)<br />
+<input type="checkbox" id="cb-Donny" name="cb-Donny" />&nbsp; Donny<br />
+<input type="checkbox" id="cb-Donut_Joe" name="cb-Donut_Joe" />&nbsp; Donut Joe<br />
+<input type="checkbox" id="cb-Dude" name="cb-Dude" />&nbsp; Dude<br />
+<input type="checkbox" id="cb-Elsie" name="cb-Elsie" />&nbsp; Elsie<br />
+<input type="checkbox" id="cb-Fancypants" name="cb-Fancypants" />&nbsp; Fancypants<br />
+<input type="checkbox" id="cb-Fiddlesticks" name="cb-Fiddlesticks" />&nbsp; Fiddlesticks<br />
+<input type="checkbox" id="cb-Fido" name="cb-Fido" />&nbsp; Fido<br />
+<input type="checkbox" id="cb-Filthy_Rich" name="cb-Filthy_Rich" />&nbsp; Filthy Rich<br />
+<input type="checkbox" id="cb-Flam" name="cb-Flam" />&nbsp; Flam<br />
+<input type="checkbox" id="cb-Flash_Sentry" name="cb-Flash_Sentry" />&nbsp; Flash Sentry<br />
+<input type="checkbox" id="cb-Fleur_de_lis" name="cb-Fleur_de_lis" />&nbsp; Fleur de lis<br />
+<input type="checkbox" id="cb-Flim" name="cb-Flim" />&nbsp; Flim<br />
+<input type="checkbox" id="cb-Flitter" name="cb-Flitter" />&nbsp; Flitter<br />
+<input type="checkbox" id="cb-Fluttershy" name="cb-Fluttershy" />&nbsp; Fluttershy<br />
+<input type="checkbox" id="cb-Fluttershy_(Filly)" name="cb-Fluttershy_(Filly)" />&nbsp; Fluttershy (Filly)<br />
+<input type="checkbox" id="cb-Fredrick_Horeshoepin" name="cb-Fredrick_Horeshoepin" />&nbsp; Fredrick Horeshoepin<br />
+<input type="checkbox" id="cb-Gilda" name="cb-Gilda" />&nbsp; Gilda<br />
+<input type="checkbox" id="cb-Ginger_Snap" name="cb-Ginger_Snap" />&nbsp; Ginger Snap<br />
+<input type="checkbox" id="cb-Granny_Smith" name="cb-Granny_Smith" />&nbsp; Granny Smith<br />
+<input type="checkbox" id="cb-Gummy" name="cb-Gummy" />&nbsp; Gummy<br />
+<input type="checkbox" id="cb-Gustave" name="cb-Gustave" />&nbsp; Gustave<br />
+<input type="checkbox" id="cb-Hoity-Toity" name="cb-Hoity-Toity" />&nbsp; Hoity-Toity<br />
+<input type="checkbox" id="cb-Horte_Cuisine" name="cb-Horte_Cuisine" />&nbsp; Horte Cuisine<br />
+<input type="checkbox" id="cb-Inky_Pie" name="cb-Inky_Pie" />&nbsp; Inky Pie<br />
+<input type="checkbox" id="cb-Iron_Will" name="cb-Iron_Will" />&nbsp; Iron Will<br />
+<input type="checkbox" id="cb-King_Sombra" name="cb-King_Sombra" />&nbsp; King Sombra<br />
+<input type="checkbox" id="cb-Lemon_Hearts" name="cb-Lemon_Hearts" />&nbsp; Lemon Hearts<br />
+<input type="checkbox" id="cb-Lightning_Bolt" name="cb-Lightning_Bolt" />&nbsp; Lightning Bolt<br />
+<input type="checkbox" id="cb-Lily" name="cb-Lily" />&nbsp; Lily<br />
+<input type="checkbox" id="cb-Little_Strongheart" name="cb-Little_Strongheart" />&nbsp; Little Strongheart<br />
+<input type="checkbox" id="cb-Lotus" name="cb-Lotus" />&nbsp; Lotus<br />
+<input type="checkbox" id="cb-Lyra" name="cb-Lyra" />&nbsp; Lyra<br />
+<input type="checkbox" id="cb-Manticore" name="cb-Manticore" />&nbsp; Manticore<br />
+<input type="checkbox" id="cb-Master" name="cb-Master" />&nbsp; Master<br />
+<input type="checkbox" id="cb-Mayor_Mare" name="cb-Mayor_Mare" />&nbsp; Mayor Mare<br />
+<input type="checkbox" id="cb-Mjolna" name="cb-Mjolna" />&nbsp; Mjolna<br />
+<input type="checkbox" id="cb-Mr_Cake" name="cb-Mr_Cake" />&nbsp; Mr Cake<br />
+<input type="checkbox" id="cb-Mrs_Cake" name="cb-Mrs_Cake" />&nbsp; Mrs Cake<br />
+<input type="checkbox" id="cb-Mrs_Sparkle" name="cb-Mrs_Sparkle" />&nbsp; Mrs Sparkle<br />
+<input type="checkbox" id="cb-Mysterious_Mare_Do_Well" name="cb-Mysterious_Mare_Do_Well" />&nbsp; Mysterious Mare Do Well<br />
+<input type="checkbox" id="cb-Nightmare_Moon" name="cb-Nightmare_Moon" />&nbsp; Nightmare Moon<br />
+<input type="checkbox" id="cb-Nurse_Redheart" name="cb-Nurse_Redheart" />&nbsp; Nurse Redheart<br />
+<input type="checkbox" id="cb-Octavia" name="cb-Octavia" />&nbsp; Octavia<br />
+<input type="checkbox" id="cb-Opalescence" name="cb-Opalescence" />&nbsp; Opalescence<br />
+<input type="checkbox" id="cb-Owlowiscious" name="cb-Owlowiscious" />&nbsp; Owlowiscious<br />
+<input type="checkbox" id="cb-Parasprite" name="cb-Parasprite" />&nbsp; Parasprite<br />
+<input type="checkbox" id="cb-Philomena" name="cb-Philomena" />&nbsp; Philomena<br />
+<input type="checkbox" id="cb-Photo_Finish" name="cb-Photo_Finish" />&nbsp; Photo Finish<br />
+<input type="checkbox" id="cb-Pinkamina_Diane_Pie" name="cb-Pinkamina_Diane_Pie" />&nbsp; Pinkamina Diane Pie<br />
+<input type="checkbox" id="cb-Pinkie_Pie" name="cb-Pinkie_Pie" />&nbsp; Pinkie Pie<br />
+<input type="checkbox" id="cb-Pinkie_Pie_(Filly)" name="cb-Pinkie_Pie_(Filly)" />&nbsp; Pinkie Pie (Filly)<br />
+<input type="checkbox" id="cb-Pinkie_Pie_(Gala)" name="cb-Pinkie_Pie_(Gala)" />&nbsp; Pinkie Pie (Gala)<br />
+<input type="checkbox" id="cb-Pipsqueak" name="cb-Pipsqueak" />&nbsp; Pipsqueak<br />
+<input type="checkbox" id="cb-Pokey_Pierce" name="cb-Pokey_Pierce" />&nbsp; Pokey Pierce<br />
+<input type="checkbox" id="cb-Prince_Blueblood" name="cb-Prince_Blueblood" />&nbsp; Prince Blueblood<br />
+<input type="checkbox" id="cb-Princess_Cadence" name="cb-Princess_Cadence" />&nbsp; Princess Cadence<br />
+<input type="checkbox" id="cb-Princess_Cadence_(Teenager)" name="cb-Princess_Cadence_(Teenager)" />&nbsp; Princess Cadence (Teenager)<br />
+<input type="checkbox" id="cb-Princess_Celestia" name="cb-Princess_Celestia" />&nbsp; Princess Celestia<br />
+<input type="checkbox" id="cb-Princess_Celestia_(Alternate_Filly)" name="cb-Princess_Celestia_(Alternate_Filly)" />&nbsp; Princess Celestia (Alternate Filly)<br />
+<input type="checkbox" id="cb-Princess_Celestia_(Filly)" name="cb-Princess_Celestia_(Filly)" />&nbsp; Princess Celestia (Filly)<br />
+<input type="checkbox" id="cb-Princess_Luna" name="cb-Princess_Luna" />&nbsp; Princess Luna<br />
+<input type="checkbox" id="cb-Princess_Luna_(Filly)" name="cb-Princess_Luna_(Filly)" />&nbsp; Princess Luna (Filly)<br />
+<input type="checkbox" id="cb-Princess_Luna_(Season_1)" name="cb-Princess_Luna_(Season_1)" />&nbsp; Princess Luna (Season 1)<br />
+<input type="checkbox" id="cb-Princess_Twilight_Sparkle" name="cb-Princess_Twilight_Sparkle" />&nbsp; Princess Twilight Sparkle<br />
+<input type="checkbox" id="cb-Queen_Chrysalis" name="cb-Queen_Chrysalis" />&nbsp; Queen Chrysalis<br />
+<input type="checkbox" id="cb-Rainbow_Dash" name="cb-Rainbow_Dash" />&nbsp; Rainbow Dash<br />
+<input type="checkbox" id="cb-Rainbow_Dash_(Filly)" name="cb-Rainbow_Dash_(Filly)" />&nbsp; Rainbow Dash (Filly)<br />
+<input type="checkbox" id="cb-Rainbowshine" name="cb-Rainbowshine" />&nbsp; Rainbowshine<br />
+<input type="checkbox" id="cb-Raindrops" name="cb-Raindrops" />&nbsp; Raindrops<br />
+<input type="checkbox" id="cb-Random_Pony" name="cb-Random_Pony" />&nbsp; Random Pony<br />
+<input type="checkbox" id="cb-Rarity" name="cb-Rarity" />&nbsp; Rarity<br />
+<input type="checkbox" id="cb-Rarity_(Filly)" name="cb-Rarity_(Filly)" />&nbsp; Rarity (Filly)<br />
+<input type="checkbox" id="cb-Rarity's_Father" name="cb-Rarity's_Father" />&nbsp; Rarity's Father<br />
+<input type="checkbox" id="cb-Rarity's_Mother" name="cb-Rarity's_Mother" />&nbsp; Rarity's Mother<br />
+<input type="checkbox" id="cb-Raven" name="cb-Raven" />&nbsp; Raven<br />
+<input type="checkbox" id="cb-Roseluck" name="cb-Roseluck" />&nbsp; Roseluck<br />
+<input type="checkbox" id="cb-Rover" name="cb-Rover" />&nbsp; Rover<br />
+<input type="checkbox" id="cb-Royal_Guard" name="cb-Royal_Guard" />&nbsp; Royal Guard<br />
+<input type="checkbox" id="cb-Royal_Night_Guard" name="cb-Royal_Night_Guard" />&nbsp; Royal Night Guard<br />
+<input type="checkbox" id="cb-Ruby_Pinch" name="cb-Ruby_Pinch" />&nbsp; Ruby Pinch<br />
+<input type="checkbox" id="cb-Rumble" name="cb-Rumble" />&nbsp; Rumble<br />
+<input type="checkbox" id="cb-Sapphire_Shores" name="cb-Sapphire_Shores" />&nbsp; Sapphire Shores<br />
+<input type="checkbox" id="cb-Scootaloo" name="cb-Scootaloo" />&nbsp; Scootaloo<br />
+<input type="checkbox" id="cb-Screw_Loose" name="cb-Screw_Loose" />&nbsp; Screw Loose<br />
+<input type="checkbox" id="cb-Screwball" name="cb-Screwball" />&nbsp; Screwball<br />
+<input type="checkbox" id="cb-Sea_Swirl" name="cb-Sea_Swirl" />&nbsp; Sea Swirl<br />
+<input type="checkbox" id="cb-Shadowbolt" name="cb-Shadowbolt" />&nbsp; Shadowbolt<br />
+<input type="checkbox" id="cb-Sheriff_Silverstar" name="cb-Sheriff_Silverstar" />&nbsp; Sheriff Silverstar<br />
+<input type="checkbox" id="cb-Shining_Armour" name="cb-Shining_Armour" />&nbsp; Shining Armour<br />
+<input type="checkbox" id="cb-Silver_Spoon" name="cb-Silver_Spoon" />&nbsp; Silver Spoon<br />
+<input type="checkbox" id="cb-Silverspeed" name="cb-Silverspeed" />&nbsp; Silverspeed<br />
+<input type="checkbox" id="cb-Sindy" name="cb-Sindy" />&nbsp; Sindy<br />
+<input type="checkbox" id="cb-Sir_Colton_Vines" name="cb-Sir_Colton_Vines" />&nbsp; Sir Colton Vines<br />
+<input type="checkbox" id="cb-Snails" name="cb-Snails" />&nbsp; Snails<br />
+<input type="checkbox" id="cb-Snips" name="cb-Snips" />&nbsp; Snips<br />
+<input type="checkbox" id="cb-Snowflake" name="cb-Snowflake" />&nbsp; Snowflake<br />
+<input type="checkbox" id="cb-Soarin'" name="cb-Soarin'" />&nbsp; Soarin'<br />
+<input type="checkbox" id="cb-Soigne_Folio" name="cb-Soigne_Folio" />&nbsp; Soigne Folio<br />
+<input type="checkbox" id="cb-Sparkler" name="cb-Sparkler" />&nbsp; Sparkler<br />
+<input type="checkbox" id="cb-Spike" name="cb-Spike" />&nbsp; Spike<br />
+<input type="checkbox" id="cb-Spitfire" name="cb-Spitfire" />&nbsp; Spitfire<br />
+<input type="checkbox" id="cb-Spot" name="cb-Spot" />&nbsp; Spot<br />
+<input type="checkbox" id="cb-Stella" name="cb-Stella" />&nbsp; Stella<br />
+<input type="checkbox" id="cb-Steven_Magnet" name="cb-Steven_Magnet" />&nbsp; Steven Magnet<br />
+<input type="checkbox" id="cb-Sue_Pie" name="cb-Sue_Pie" />&nbsp; Sue Pie<br />
+<input type="checkbox" id="cb-Sunset_Shimmer" name="cb-Sunset_Shimmer" />&nbsp; Sunset Shimmer<br />
+<input type="checkbox" id="cb-Surprise" name="cb-Surprise" />&nbsp; Surprise<br />
+<input type="checkbox" id="cb-Sweetie_Belle" name="cb-Sweetie_Belle" />&nbsp; Sweetie Belle<br />
+<input type="checkbox" id="cb-Tank" name="cb-Tank" />&nbsp; Tank<br />
+<input type="checkbox" id="cb-Thunderlane" name="cb-Thunderlane" />&nbsp; Thunderlane<br />
+<input type="checkbox" id="cb-Trixie" name="cb-Trixie" />&nbsp; Trixie<br />
+<input type="checkbox" id="cb-Twilight_Sparkle" name="cb-Twilight_Sparkle" />&nbsp; Twilight Sparkle<br />
+<input type="checkbox" id="cb-Twilight_Sparkle_(Filly)" name="cb-Twilight_Sparkle_(Filly)" />&nbsp; Twilight Sparkle (Filly)<br />
+<input type="checkbox" id="cb-Twinkleshine" name="cb-Twinkleshine" />&nbsp; Twinkleshine<br />
+<input type="checkbox" id="cb-Twist" name="cb-Twist" />&nbsp; Twist<br />
+<input type="checkbox" id="cb-Uncle_Orange" name="cb-Uncle_Orange" />&nbsp; Uncle Orange<br />
+<input type="checkbox" id="cb-Vinyl_Scratch" name="cb-Vinyl_Scratch" />&nbsp; Vinyl Scratch<br />
+<input type="checkbox" id="cb-Violet" name="cb-Violet" />&nbsp; Violet<br />
+<input type="checkbox" id="cb-Walter" name="cb-Walter" />&nbsp; Walter<br />
+<input type="checkbox" id="cb-Wild_Fire" name="cb-Wild_Fire" />&nbsp; Wild Fire<br />
+<input type="checkbox" id="cb-Winona" name="cb-Winona" />&nbsp; Winona<br />
+<input type="checkbox" id="cb-Zecora" name="cb-Zecora" />&nbsp; Zecora<br />
+
+//-->
