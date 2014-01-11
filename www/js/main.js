@@ -64,6 +64,14 @@ function makeMenu() {
             }
         });
     }
+    
+    $("#cb_showmenu").change(function(){
+        if ($(this).is(":checked")){
+            $("#div_menu").show();
+        } else {
+            $("#div_menu").hide();
+        }
+    });
 }
 
 function loadBestPony() {
