@@ -43,6 +43,8 @@ function makeMenu() {
         output += "</li>\n";
     }
     output += "</ul>\n";
+    //Link to Github
+    output += "<br /><a href=\"https://github.com/frankkienl/BronyOnlineLivewallpaper\">Open Source</a>\n";
     jQuery("#div_menu").append(output);
     //add click listeners
 //    for (var i = 0; i < theList.length; i++) {
