@@ -47,6 +47,9 @@
                 console.log("onRequestSessionSuccess " + e);
                 //add listener
                 session.addMessageListener("urn:x-cast:nl.frankkie.bronylivewallpaper", onMessageFromTVReceived);
+                //now load initial ponies
+                loadBestPony();
+                loadSomeOtherPonies();
             }
             
             function onMessageFromTVReceived(string1, string2){
@@ -91,7 +94,8 @@
         <div id="div_menu" style="position:absolute; z-index: 1;"></div> 
         <script type="text/javascript">
             isChromecastSender = true;
-            main();
+            makeMenu();
+            //load ponies later
         </script>
     </body>
 </html>

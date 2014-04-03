@@ -178,7 +178,7 @@ Pony.prototype.init = function() {
     //Load pony.ini
     //jQuery.ajax("assets/" + this.name + "/pony.ini",);
     $.ajax({
-        url: "assets/" + this.name + "/pony.ini",
+        url: "http://frankkie.nl/pony/livewallpaper/cors_hack.php?file=assets/" + this.name + "/pony.ini",
         dataType: 'text',
         cache: false
     }).done(function(csvAsString) {
@@ -274,9 +274,9 @@ Pony.prototype.move = function(/*double*/ delta) {
 
 Pony.prototype.refreshGifDecoder = function() {
     if (this.imageRight) {
-        this.currentGif = "assets/" + this.name + "/" + this.currentBehaviour.imageRight;
+        this.currentGif = "http://frankkie.nl/pony/livewallpaper/assets/" + this.name + "/" + this.currentBehaviour.imageRight;
     } else {
-        this.currentGif = "assets/" + this.name + "/" + this.currentBehaviour.imageLeft;
+        this.currentGif = "http://frankkie.nl/pony/livewallpaper/assets/" + this.name + "/" + this.currentBehaviour.imageLeft;
     }
     $("#pony-" + this.nameNoSpace + " img").attr("src", this.currentGif);
 };
