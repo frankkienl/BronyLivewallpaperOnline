@@ -8,9 +8,9 @@ function main() {
 }
 
 /** IMPORTANT **/
-var isOnline = false; //online=ALL ponies; PhoneGap=Mane6
-
-var debug = true;
+var isOnline = true; //online=ALL ponies; PhoneGap=Mane6
+var isChromecastSender = false;
+var debug = false;
 
 //global vars
 var ponies = new Array();
@@ -37,7 +37,7 @@ function makeMenu() {
     }
     for (var i = 0; i < theList.length; i++) {
         output += "<li><input type=\"checkbox\"";
-        output += "id=\"cb_" + removeSpaces(theList[i]) + "\" ";        
+        output += "id=\"cb_" + removeSpaces(theList[i]) + "\" ";
         output += "/>&nbsp;";
         output += theList[i];
         output += "</li>\n";
@@ -57,7 +57,7 @@ function makeMenu() {
 //        });
 //    }
     for (var i = 0; i < theList.length; i++) {
-        $("#cb_" + removeSpaces(theList[i])).data("name",theList[i]);
+        $("#cb_" + removeSpaces(theList[i])).data("name", theList[i]);
         $("#cb_" + removeSpaces(theList[i])).change(function() {
             if ($(this).is(":checked")) {
                 loadPony($(this).data("name"));
@@ -66,9 +66,9 @@ function makeMenu() {
             }
         });
     }
-    
-    $("#cb_showmenu").change(function(){
-        if ($(this).is(":checked")){
+
+    $("#cb_showmenu").change(function() {
+        if ($(this).is(":checked")) {
             $("#div_menu").show();
         } else {
             $("#div_menu").hide();
@@ -100,16 +100,29 @@ function loadPony(name) {
     if (!isPonyLoaded(name)) {
         temp = new Pony(name);
         ponies[ponies.length] = temp; //sneaky bastard
-        jQuery("#cb_" + temp.nameNoSpace).attr("checked", "checked"); //enable in menu
-        temp.init();
+        jQuery("#cb_" + temp.nameNoSpace).attr("checked", "checked"); //enable in menu        
+        if (isChromecastSender) {
+            //send to receiver            
+            sendMessageToReceiver("{\"command\":\"load\",\"ponyname\":\"" + name + "\"}");
+        } else {
+            //Dont actually load ponies on the sender!
+            temp.init();
+        }
     }
 }
 
 function unloadPony(name) {
+    if (isChromecastSender) {
+        //send to receiver            
+        sendMessageToReceiver("{\"command\":\"unload\",\"ponyname\":\"" + name + "\"}");
+    }
     for (var i = 0; i < ponies.length; i++) {
         if (ponies[i].name === name) {
-            clearInterval(ponies[i].intervalId);
-            jQuery("#pony-" + ponies[i].nameNoSpace).remove(); //remove from div
+            if (!isChromecastSender) {
+                //Dont do this on the Sender.
+                clearInterval(ponies[i].intervalId);
+                jQuery("#pony-" + ponies[i].nameNoSpace).remove(); //remove from div
+            }
             jQuery("#cb_" + ponies[i].nameNoSpace).attr("checked", "false"); //remove from menu
             ponies.splice(i, 1); //remove from array
             return;
@@ -169,12 +182,12 @@ Pony.prototype.init = function() {
         dataType: 'text',
         cache: false
     }).done(function(csvAsString) {
-        if (debug){
+        if (debug) {
             console.log("csvAsString: " + csvAsString);
         }
         //csvAsArray = csvAsString.csvToArray();
         csvAsArray = csvToArray(csvAsString, undefined); //stupid Sting-class bug *grumble*
-        if (debug){
+        if (debug) {
             console.log("csvArray:" + csvAsArray);
         }
         //Loop though array
@@ -187,7 +200,7 @@ Pony.prototype.init = function() {
                 behaviourCount++;
             }
         }
-        if (debug){
+        if (debug) {
             console.log("behaviourCount: " + behaviourCount);
         }
         //
@@ -604,9 +617,11 @@ var listOfPonies = ["Ace",
  * http://code.google.com/p/csv-to-array/
  *
  */
-csvToArray = function (thisString, o) {
-    console.log("thisString: " + thisString);
-    console.log("csvToArray o="+o);
+csvToArray = function(thisString, o) {
+    if (debug) {
+        console.log("thisString: " + thisString);
+        console.log("csvToArray o=" + o);
+    }
     var od = {
         'fSep': ',',
         'rSep': '\r\n',
@@ -616,7 +631,8 @@ csvToArray = function (thisString, o) {
     }
     if (o) {
         for (var i in od) {
-            if (!o[i]) o[i] = od[i];
+            if (!o[i])
+                o[i] = od[i];
         }
     } else {
         o = od;
@@ -626,40 +642,40 @@ csvToArray = function (thisString, o) {
     ];
     for (var r = f = p = q = 0; p < thisString.length; p++) {
         switch (c = thisString.charAt(p)) {
-        case o.quot:
-            if (q && thisString.charAt(p + 1) == o.quot) {
-                a[r][f] += o.quot;
-                ++p;
-            } else {
-                q ^= 1;
-            }
-            break;
-        case o.fSep:
-            if (!q) {
-                if (o.trim) {
-                    a[r][f] = a[r][f].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-                }
-                a[r][++f] = '';
-            } else {
-                a[r][f] += c;
-            }
-            break;
-        case o.rSep.charAt(0):
-            if (!q && (!o.rSep.charAt(1) || (o.rSep.charAt(1) && o.rSep.charAt(1) == thisString.charAt(p + 1)))) {
-                if (o.trim) {
-                    a[r][f] = a[r][f].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-                }
-                a[++r] = [''];
-                a[r][f = 0] = '';
-                if (o.rSep.charAt(1)) {
+            case o.quot:
+                if (q && thisString.charAt(p + 1) == o.quot) {
+                    a[r][f] += o.quot;
                     ++p;
+                } else {
+                    q ^= 1;
                 }
-            } else {
+                break;
+            case o.fSep:
+                if (!q) {
+                    if (o.trim) {
+                        a[r][f] = a[r][f].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+                    }
+                    a[r][++f] = '';
+                } else {
+                    a[r][f] += c;
+                }
+                break;
+            case o.rSep.charAt(0):
+                if (!q && (!o.rSep.charAt(1) || (o.rSep.charAt(1) && o.rSep.charAt(1) == thisString.charAt(p + 1)))) {
+                    if (o.trim) {
+                        a[r][f] = a[r][f].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+                    }
+                    a[++r] = [''];
+                    a[r][f = 0] = '';
+                    if (o.rSep.charAt(1)) {
+                        ++p;
+                    }
+                } else {
+                    a[r][f] += c;
+                }
+                break;
+            default:
                 a[r][f] += c;
-            }
-            break;
-        default:
-            a[r][f] += c;
         }
     }
     if (o.head) {

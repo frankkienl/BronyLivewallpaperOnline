@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BronyLiveWallpaper Chromecast Sender</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script src="js/libs/jquery/jquery.js"></script>       
+        <script src="js/csvToArray.v2.1.js"></script>
+        <script type="text/javascript">
+            var applicationID = "5A82D73D";
+            var session;
+
+            window.onload = function() {
+                if (chrome.cast || chrome.cast.isAvailable) {
+                    setTimeout(initializeCastApi, 1000);
+                } else {
+                    alert("Chromecast is not available");
+                }
+            };
+
+            initializeCastApi = function() {
+                var sessionRequest = new chrome.cast.SessionRequest(applicationID);
+                var apiConfig = new chrome.cast.ApiConfig(sessionRequest,
+                        sessionListener,
+                        receiverListener);
+                chrome.cast.initialize(apiConfig, onInitSuccess, onError);
+            };
+
+            function userClickedCastButton() {
+                //the extentions will show list chromecast devices
+                chrome.cast.requestSession(onRequestSessionSuccess, onError);
+            }
+
+            //Callback for when user has selected Chromecast Device
+            function receiverListener(e) {
+                if (e === chrome.cast.ReceiverAvailability.AVAILABLE) {
+                    //Create Session
+                    chrome.cast.requestSession(onRequestSessionSuccess, onError);
+                }
+            }
+
+            //Callback for when session is created
+            function onRequestSessionSuccess(e) {
+                session = e;
+                console.log("onRequestSessionSuccess " + e);
+                //add listener
+                session.addMessageListener("urn:x-cast:nl.frankkie.bronylivewallpaper", onMessageFromTVReceived);
+            }
+            
+            function onMessageFromTVReceived(string1, string2){
+                console.log("onMessageFromTVReceived " + string1 + " " + string2);
+            }
+
+            //Callback for when there is an existing callback during init.
+            function sessionListener(e) {
+                onRequestSessionSuccess(e);
+            }
+
+            function onInitSuccess(e) {
+                console.log("onInitSuccess " + e);
+                userClickedCastButton();
+            }
+
+            function onSuccess(e){
+                console.log("onSuccess " + e);
+            }
+
+            function onError(e) {
+                console.log("onError " + e);
+            }
+
+            function stopApp() {
+                session.stop(onSuccess, onError);
+            }
+            
+            function sendMessageToReceiver(e){
+                session.sendMessage("urn:x-cast:nl.frankkie.bronylivewallpaper",e,onSuccess,onError);
+                console.log(e);
+                //session.sendMessage("nl.frankkie.bronylivewallpaper",e,onSuccess,onError);
+            }
+        </script>
+        <style type="text/css">            
+            body {background-image: url('img/background.jpg'); margin: 35px;}
+            ponyClass {font-family: monospace;}
+        </style>
+    </head>
+    <body>
+        <div>ChromeCast Sender !</div>     
+        <div id="div_menu" style="position:absolute; z-index: 1;"></div> 
+        <script type="text/javascript">
+            isChromecastSender = true;
+            main();
+        </script>
+    </body>
+</html>

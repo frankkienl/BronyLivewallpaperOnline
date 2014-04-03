@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BronyLiveWallpaper Chromecast Receiver</title>
+        <meta charset="UTF-8">
+        <script src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
+        <script src="js/libs/jquery/jquery.js"></script>       
+        <script src="js/csvToArray.v2.1.js"></script>
+        <script type="text/javascript">
+
+            window.onload = function() {
+                window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+
+                var customMessageBus = castReceiverManager.getCastMessageBus('urn:x-cast:nl.frankkie.bronylivewallpaper');
+                customMessageBus.onMessage = function(event) {
+                    // Handle message
+                    console.log(event);
+                    
+                    var data = JSON.parse(event.data);
+                    if (data.command == "load"){
+                        loadPony(data.ponyname);
+                    } else if (data.command == "unload"){
+                        unloadPony(data.ponyname);
+                    } else if (data.command == "list"){
+                       //list all enabled ponies
+                       console.log(JSON.stringify(ponies));
+                       customMessageBus.send(event.senderId, JSON.stringify(ponies));
+                    } else {
+                        //unknown command
+                    }
+                };
+
+                window.castReceiverManager.start();
+            };
+        </script>
+        <style type="text/css">            
+            body {background-image: url('img/background.jpg'); margin: 35px;}
+            ponyClass {font-family: monospace;}
+        </style>
+    </head>
+    <body>        
+        <div id="root" style="position:absolute; width: 100%; height: 100%; z-index: 0"></div>
+        <div id="div_showmenu" style="position:absolute; z-index: 2; visibility: hidden"><input type="checkbox" id="cb_showmenu"/>Menu</div>
+        <div id="div_menu" style="position:absolute; z-index: 1; display: none; visibility: hidden"></div>        
+        <!-- Start ! //-->
+        <script src="js/main.js"></script>
+        <script>
+            //dont load ponies now, the sender must send.
+            //main();
+        </script>
+    </body>
+</html>
